@@ -1,0 +1,37 @@
+﻿Build started 10/12/2016 3:52:14 PM.
+     1>Project "C:\Users\shenderson\DJinniProject\generated-src\cpp\EO_API_Djinni\EO_API_Djinni\EO_API_Djinni.vcxproj" on node 2 (rebuild target(s)).
+     1>_PrepareForClean:
+         Deleting file "Debug\EO_API_Djinni.lastbuildstate".
+       InitializeBuildStatus:
+         Touching "Debug\EO_API_Djinni.unsuccessfulbuild".
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\shenderson\DJinniProject\deps\djinni\support-lib\jni" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D EO_API_DJINNI_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\shenderson\DJinniProject\deps\djinni\support-lib\jni" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D EO_API_DJINNI_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\..\jni\EO_APILib.cpp ..\..\..\jni\LensConfig_s.cpp ..\..\..\jni\LensSerialIRZoom_s.cpp ..\..\..\jni\LensSerialZoom_s.cpp ..\..\..\jni\NativeEOAPILib.cpp ..\..\..\jni\NativeLensConfigS.cpp ..\..\..\jni\NativeLensSerialIRZoomS.cpp ..\..\..\jni\NativeLensSerialZoomS.cpp ..\..\..\jni\NativeZoomToRangeConfigS.cpp ..\..\..\jni\ZoomToRangeConfig_s.cpp EO_API_Djinni.cpp
+         EO_API_Djinni.cpp
+         ZoomToRangeConfig_s.cpp
+     1>c:\users\shenderson\djinniproject\deps\djinni\support-lib\jni\djinni_support.hpp(22): fatal error C1083: Cannot open include file: 'mutex': No such file or directory
+         NativeZoomToRangeConfigS.cpp
+     1>c:\users\shenderson\djinniproject\deps\djinni\support-lib\jni\djinni_support.hpp(22): fatal error C1083: Cannot open include file: 'mutex': No such file or directory
+         NativeLensSerialZoomS.cpp
+     1>c:\users\shenderson\djinniproject\deps\djinni\support-lib\jni\djinni_support.hpp(22): fatal error C1083: Cannot open include file: 'mutex': No such file or directory
+         NativeLensSerialIRZoomS.cpp
+     1>c:\users\shenderson\djinniproject\deps\djinni\support-lib\jni\djinni_support.hpp(22): fatal error C1083: Cannot open include file: 'mutex': No such file or directory
+         NativeLensConfigS.cpp
+     1>c:\users\shenderson\djinniproject\deps\djinni\support-lib\jni\djinni_support.hpp(22): fatal error C1083: Cannot open include file: 'mutex': No such file or directory
+         NativeEOAPILib.cpp
+     1>c:\users\shenderson\djinniproject\deps\djinni\support-lib\jni\djinni_support.hpp(22): fatal error C1083: Cannot open include file: 'mutex': No such file or directory
+         LensSerialZoom_s.cpp
+     1>c:\users\shenderson\djinniproject\deps\djinni\support-lib\jni\djinni_support.hpp(22): fatal error C1083: Cannot open include file: 'mutex': No such file or directory
+         LensSerialIRZoom_s.cpp
+     1>c:\users\shenderson\djinniproject\deps\djinni\support-lib\jni\djinni_support.hpp(22): fatal error C1083: Cannot open include file: 'mutex': No such file or directory
+         LensConfig_s.cpp
+     1>c:\users\shenderson\djinniproject\deps\djinni\support-lib\jni\djinni_support.hpp(22): fatal error C1083: Cannot open include file: 'mutex': No such file or directory
+         EO_APILib.cpp
+     1>c:\users\shenderson\djinniproject\deps\djinni\support-lib\jni\djinni_support.hpp(22): fatal error C1083: Cannot open include file: 'mutex': No such file or directory
+         Generating Code...
+     1>Done Building Project "C:\Users\shenderson\DJinniProject\generated-src\cpp\EO_API_Djinni\EO_API_Djinni\EO_API_Djinni.vcxproj" (rebuild target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:03.26

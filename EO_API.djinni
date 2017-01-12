@@ -1,0 +1,119 @@
+# EO_API.djinni : IDL source for EO_API
+
+LensSerialZoom_s = record {
+   
+      LensType: i16;  # lens type
+      LensID : i8;
+
+      VideoSource : i8;   # video source lens is connected to
+      SerialPort : i8;   # tracker serial port lens is connected to (3-7, 0-2 are reserved)
+      ZoomCmd : i8;   # zoom command (0=none, 1=narrow, 2=wide, 3=go to pos)
+      FocusCmd : i8;	  # focus command (0=none, 1=near, 2=far, 3=go to pos)
+      IrisCmd : i8;   # iris command (0=none, 1=close, 2=open)
+      IrisAuto : i8;	  # automatic iris (0=disabled, 1=enabled/automatic)
+
+      ZoomCal : i8;   # perform zoom scale calibration (1=run now)
+      UseOldProtocol : i8;	  # use older lens communication protocol (LENS_COHU_MPC)
+      Enable2X : i8;   # enable 2X extender (LENS_FUJINON_D60)
+
+      ZoomFov : f64;  # zoom field-of-view in degrees
+      #   range: 0 to 360.00 (divide by 100 to get value)
+
+      MinFov : f64;  # minimum zoom field-of-view of the lens in degrees
+      #   range: 0 to 360.00 (divide by 100 to get value)
+
+      MaxFov : f64;  # maximum zoom field-of-view of the lens in degrees
+      #   range: 0 to 360.00 (divide by 100 to get value)
+      # focus position
+      FocusPosition : i16;
+}
+
+LensSerialIRZoom_s = record {
+   
+      LensType: i16;  # lens type
+
+      VideoSource : i8;   # video source lens is connected to
+      SerialPort : i8;   # tracker serial port lens is connected to (3-7, 0-2 are reserved)
+      ZoomCmd : i8;   # zoom command (0=none, 1=narrow, 2=wide, 3=go to pos)
+      ZoomCal : i8;   # perform zoom scale calibration (1=run now)
+      FocusCmd : i8;	  # focus command (0=none, 1=near, 2=far, 3=go to pos)
+      Polarity : i8;	  # image polarity (0=normal/white hot, 1=inverted/black hot)
+      AGC : i8;	  # automatic gain control (0=disabled, 1=enabled/automatic)
+
+      DayMode : i8;   # day mode enable (0=disabled/night, 1=enabled/day)
+      HighSensitivity : i8;	  # high sensitivity enable (0=disabled/normal, 1=enabled/high)
+      AutoCalibration : i8;	  # auto calibration enable (0=disabled, 1=enabled)
+      LensCover : i8;           #Lens Cover (0=close, 1=open)
+      FlirMenuCommand : i8;
+
+      ManualGain: i16;  # sensor gain (when AGC is disabled)
+
+      ManualOffset: i16;  # sensor offset (when AGC is disabled)
+
+      NonUniformityCorrectionTable: i16;  # non-uniformity correction table to apply
+
+      ZoomFov : f64;  # zoom field-of-view in degrees
+      #   range: 0 to 360.00 (divide by 100 to get value)
+
+      MinFov : f64;  # minimum zoom field-of-view of the lens in degrees
+      #   range: 0 to 360.00 (divide by 100 to get value)
+
+      MaxFov : f64;  # maximum zoom field-of-view of the lens in degrees
+      #   range: 0 to 360.00 (divide by 100 to get value)
+
+	  # focus position
+      FocusPosition: i16;
+   }
+
+ZoomToRangeConfig_s = record {
+      VideoSource : i16;   # video source to configure (which lens is connected to)
+      Enable : i16;   # enable zoom-to-range for this video source/lens (1=enable)
+      UseSinglePointAlgorithm : i8;   # use a single point algorithm (min range and max fov only) instead of two points
+
+      MinLensFOV : f64;  # maximum lens (zoom) field-of-view in degrees
+      #   range: 0 to 360.00 (divide by 100 to get value)
+      MaxLensFOV : f64;  # minimum lens (zoom) field-of-view in degrees
+      #   range: 0 to 360.00 (divide by 100 to get value)
+
+      MinRange : i16;  # minimum range in centimeters, least significant word (lsw)
+                              # and most significant word (msw)
+                              # which corresponds to the maximum FOV of the lens
+                              # (divide by 100 to get meters)
+
+      # maximum range in centimeters, least significant word (lsw)
+                      # and most significant word (msw)
+                      # which corresponds to the minimum FOV of the lens
+                      # (divide by 100 to get meters)  
+      MaxRange : i16;
+   } 
+
+   # ---------- Lens Config Message Structure ----------
+   LensConfig_s = record {
+	   Analog1 : i16;  # lens connected to analog video source 1
+	   Analog2 : i16;  # lens connected to analog video source 2
+	   Analog3 : i16;  # lens connected to analog video source 3
+							     # (differential input on Model 6005 R2)
+	   Analog4 : i16;  # lens connected to analog video source 4
+							     # (not available on Model 6005 R2)
+	   Digital1 : i16;  # lens connected to digital video source 1
+	   # lens connected to digital video source 2
+							     # (not available on Model 6005 and only
+							     #  supported on 6007 with daughter card)
+	   Digital2 : i16;
+   }
+   
+EO_APILib = interface +c {
+
+static ILens();
+
+   SetSerialZoom(zoom : LensSerialZoom_s);
+   QueryAllLensConfig(serialIRType : i16) : i16;
+   ParseSerialZoomConfigMessage(data : i8) : LensSerialZoom_s;
+   SetSerialIRZoom(zoom : LensSerialIRZoom_s);
+   ParseSerialIRZoomConfigMessage(data : i8) :  LensSerialIRZoom_s;
+   SetZoomToRange(config : ZoomToRangeConfig_s );
+   ParseZoomToRangeConfigMessage(data : i8) : ZoomToRangeConfig_s;
+   SetConnectionID(connectionID : i16);
+   SetLensConfig(config : LensConfig_s );
+   ParseLensConfigMessage(data : i8) : LensConfig_s;
+}
